@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.net.Uri;
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import org.json.JSONArray;
@@ -21,6 +23,7 @@ import org.json.JSONObject;
 //
 
 public class Invoice {
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     //@SerializedName takes parameter of annotation to be used when serializing/deserializing objects for JSON/GSON
     @SerializedName("paymentTerms")
@@ -169,9 +172,30 @@ public class Invoice {
                 //create item
                 for(Item item : items) {
                     JSONObject itemJson = new JSONObject();
-                    itemJson.
+                    itemJson.put("description", item.getDescription());//need getDescription method
+                    itemJson.put("taxRate", item.getTaxRate());
+                    itemJson.put("name", item.getName());
+                    itemJson.put("unitPrice", item.getUnitPrice());
+                    itemJson.put("taxName", item.getTaxName());
+                    itemJson.put("quantity", item.getQuantity());
+                    //add item to item list
+                    itemListArray.put(item);
                 }
+                itemList.put("item", itemListArray);
+
+                //add invoice details including items from above
+                invoiceJson.put("paymentTerms", invoice.getPaymentTerms());
+                invoiceJson.put("discountPercent", invoice.getDiscountPercent());
+                invoiceJson.put("currencyCode", invoice.getCurrencyCode());
+                invoiceJson.put("number", invoice.getNumber());
+                invoiceJson.put("merchantEmail", invoice.getMerchantEmail());
+                invoiceJson.put("payerEmail", invoice.getPayerEmail());
+                invoiceJson.put("itemList", itemList);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.d(LOG_TAG, "JSONException Error!");
             }
+            return Uri.encode(invoiceJson.toString());
         }
     }
  }
