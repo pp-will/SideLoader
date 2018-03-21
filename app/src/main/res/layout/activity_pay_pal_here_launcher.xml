@@ -28,14 +28,15 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="@string/invoiceNum"
                     style="@style/item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="253dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/invoiceNum" />
 
                 <EditText
                     android:id="@+id/editInvoiceNum"
                     android:layout_width="match_parent"
+                    style="@style/item"
                     android:layout_height="wrap_content"
                     android:text="@string/editInvoiceNum" />
             </LinearLayout>
@@ -45,12 +46,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/paymentTerms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/item"
-                android:text="@string/paymentTerms" />
+                <TextView
+                    android:id="@+id/paymentTerms"
+                    style="@style/item"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/paymentTerms" />
 
             <EditText
                 android:id="@+id/editPaymentTerms"
@@ -65,10 +66,10 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="@string/discount"
                     style="@style/item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="53dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/discount" />
 
                 <EditText
                     android:id="@+id/editDiscount"
@@ -102,10 +103,10 @@
 
                 <TextView
                     android:id="@+id/merchantEmail"
+                    style="@style/item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/merchantEmail"
-                    style="@style/item"/>
+                    android:text="@string/merchantEmail" />
 
                 <EditText
                     android:layout_width="wrap_content"

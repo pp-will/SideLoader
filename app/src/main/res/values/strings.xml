@@ -20,4 +20,11 @@
     <string name="itemCount">0</string>
     <string name="addItemButton">Add Items</string>
     <string name="launchPayPalHere">Launch PayPal Here</string>
+    <string name="addItem">Add Item</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="unitPrice">Price</string>
+    <string name="taxName">Tax Name</string>
+    <string name="taxRate">Tax Rate</string>
+    <string name="quantity">Quantity</string>
 </resources>
