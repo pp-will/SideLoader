@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -36,7 +37,7 @@ public class PayPalHereLauncher extends Activity {
     private EditText editPayerEmail;
     private EditText editPayerPhone;
 
-    private TextView itemCount;
+    private TextView _itemCount;
 
     private static final int ADD_ITEM_REQUEST_CODE = 100;
 
@@ -53,7 +54,7 @@ public class PayPalHereLauncher extends Activity {
         editPayerEmail = findViewById(R.id.editPayerEmail);
         editPayerPhone = findViewById(R.id.editPayerPhone);
 
-        itemCount = (TextView) findViewById(R.id.itemCount);
+        _itemCount = (TextView) findViewById(R.id.itemCount);
 
         //figure out what this does
        // initializeDefaultDataList();
@@ -66,6 +67,86 @@ public class PayPalHereLauncher extends Activity {
     }
 
     private void initializeDefaultDataList() {
-        invoice
+        _invoice = new Invoice();
+        _invoice.addItemWithName("Shirt", "I love shirts", "8.50", 9.99, "Sales Tax", 1.0);
+        _itemCount.setText(String.valueOf(_invoice.getItemsCount()));
+    }
+
+    private void handleOpenURL(Intent intent) {
+        Uri data = intent.getData();
+        if(data == null) {
+            return;
+        }
+
+        String host = data.getHost();
+        if(RESPONSE_HOST.equals(host)) {
+            String response = data.toString();
+            AlertDialog.Builder responseDialog = new AlertDialog.Builder(this);
+            responseDialog.setMessage(response).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            responseDialog.show();
+        }
+    }
+
+    public void addItem(View view) {
+        Intent intent = new Intent(this, AddItem.class);
+        startActivityForResult(intent, ADD_ITEM_REQUEST_CODE);
+    }
+
+    //processes info from addItem ^
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == ADD_ITEM_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getBundleExtra(Item.class.getSimpleName());
+            Item item = Item.Converter.fromBundle(bundle);
+            _invoice.addItem(item);
+            _itemCount.setText(String.valueOf(_invoice.getItemsCount()));
+        }
+    }
+
+    public void launchPayPalHere(View view) {
+        _invoice.setPayerEmail(editPayerEmail.getText().toString());
+        _invoice.setMerchantEmail(editMerchantEmail.getText().toString());
+        _invoice.setCurrencyCode(editCurrencyCode.getText().toString());
+        _invoice.setDiscountPercent(editDiscount.getText().toString());
+        _invoice.setNumber(editInvoiceNum.getText().toString());
+        _invoice.setPaymentTerms(editPaymentTerms.getText().toString());
+        String phone = editPayerPhone.getText().toString();
+
+        String urlEncodedReturnUrl = Uri.encode(RETURN_URL);
+        String urlEncodedPaymentTypes = Uri.encode(ACCEPTED_PAYMENT_TYPES);
+
+        String urlEncodedInvoice = Invoice.Converter.serializeToUrlEncodedJsonString(_invoice);
+        String pphUrl = MessageFormat.format(PPH_URL_STRING, urlEncodedPaymentTypes, urlEncodedReturnUrl, urlEncodedInvoice, phone);
+
+        Intent pphIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pphUrl));
+        PackageManager packageManager = getPackageManager();
+        ResolveInfo resolveInfo = packageManager.resolveActivity(pphIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        if(resolveInfo == null) {
+            AlertDialog.Builder pphNotFoundDialog = new AlertDialog.Builder(this);
+            pphNotFoundDialog.setTitle("PayPal Here app not found!").setMessage("Install from Google Play");
+            pphNotFoundDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MARKET_URL)));
+                    dialogInterface.dismiss();
+                }
+            });
+            pphNotFoundDialog.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            pphNotFoundDialog.show();
+        } else {
+            startActivity(pphIntent);
+        }
     }
 }
