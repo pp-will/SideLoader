@@ -1,6 +1,6 @@
 package com.example.sideloader;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 //copied from git
@@ -12,17 +12,26 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.MessageFormat;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
+
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(LOG_TAG, "onCreate");
         setContentView(R.layout.activity_main);
+    }
+
+    public void goToPayPalHereLauncher(View view) {
+        Intent intent = new Intent(this, PayPalHereLauncher.class);
+        startActivity(intent);
     }
 }
