@@ -10,11 +10,18 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.text.MessageFormat;
+
+import io.fabric.sdk.android.Fabric;
+
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 
 //called when activity is created
@@ -44,6 +51,7 @@ public class PayPalHereLauncher extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_pay_pal_here_launcher);
 
         editInvoiceNum = findViewById(R.id.editInvoiceNum);
@@ -106,6 +114,7 @@ public class PayPalHereLauncher extends Activity {
             Bundle bundle = data.getBundleExtra(Item.class.getSimpleName());
             Item item = Item.Converter.fromBundle(bundle);
             _invoice.addItem(item);
+
             _itemCount.setText(String.valueOf(_invoice.getItemsCount()));
         }
     }

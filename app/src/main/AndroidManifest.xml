@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sideloader">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +20,11 @@
         </activity>
         <activity android:name=".PayPalHereLauncher" />
         <activity android:name=".AddItem"></activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="218dd07a4454e6c146b00fb09278dbc9840fc933" />
+
     </application>
 
 </manifest>

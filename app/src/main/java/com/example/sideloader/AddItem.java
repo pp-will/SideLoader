@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
+import io.fabric.sdk.android.Fabric;
+
 public class AddItem extends Activity {
 
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -27,6 +31,7 @@ public class AddItem extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(LOG_TAG, "onCreate AddItem activity");
+        Fabric.with(this, new Crashlytics());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 

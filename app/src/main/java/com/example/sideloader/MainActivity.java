@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 import java.text.MessageFormat;
 
 public class MainActivity extends Activity {
@@ -26,6 +28,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         Log.d(LOG_TAG, "onCreate");
         setContentView(R.layout.activity_main);
     }
