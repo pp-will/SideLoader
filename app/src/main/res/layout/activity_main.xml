@@ -28,12 +28,11 @@
         android:text="@string/start" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
-        android:layout_below="@+id/textView1"
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:src="@drawable/paypal-logo1" />
+        android:layout_centerVertical="true"
+        android:src="@drawable/paypallogo" />
 
 </RelativeLayout>
