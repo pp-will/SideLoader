@@ -118,6 +118,12 @@
             android:inputType="phone"
             style="@style/item"/>
 
+        <TextView
+            android:id="@+id/itemCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/itemCount"/>
+
         <Button
             android:id="@+id/addItemButton"
             android:layout_width="match_parent"
