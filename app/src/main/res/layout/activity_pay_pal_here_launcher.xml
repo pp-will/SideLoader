@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,195 +8,137 @@
     tools:context="com.example.sideloader.PayPalHereLauncher">
 
     <LinearLayout
-        android:id="@+id/invoice_info_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="2dip"
-        android:orientation="vertical"
-        android:padding="13dip">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/PPHLauncher"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/PPHLauncherText"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"/>
+            android:background="@color/black"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    style="@style/item"
-                    android:layout_width="253dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/invoiceNum" />
-
-                <EditText
-                    android:id="@+id/editInvoiceNum"
-                    android:layout_width="match_parent"
-                    style="@style/item"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editInvoiceNum" />
-            </LinearLayout>
-
-
-            <LinearLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            style="@style/item"
+            android:text="@string/invoiceNum" />
 
-                <TextView
-                    android:id="@+id/paymentTerms"
-                    style="@style/item"
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/paymentTerms" />
+        <EditText
+            android:id="@+id/editInvoiceNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editInvoiceNum"
+            style="@style/item"/>
 
-            <EditText
-                android:id="@+id/editPaymentTerms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/item"
-                android:text="@string/dueOnReceipt"/>
-            </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/paymentTerms"
+            style="@style/item"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editPaymentTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dueOnReceipt"
+            style="@style/item" />
 
-                <TextView
-                    style="@style/item"
-                    android:layout_width="53dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/discount" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/discount"
+            style="@style/item"/>
 
-                <EditText
-                    android:id="@+id/editDiscount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/item"
-                    android:text="@string/editDiscount" />
-            </LinearLayout>
+        <EditText
+            android:id="@+id/editDiscount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editDiscount"
+            android:inputType="numberDecimal"
+            style="@style/item" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/currencyCode"
+            style="@style/item"/>
 
-                <TextView
-                    android:id="@+id/currencyCode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/currencyCode"/>
+        <EditText
+            android:id="@+id/editCurrencyCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editCurrencyCode"
+            android:inputType="text"
+            style="@style/item"/>
 
-                <EditText
-                    android:id="@+id/editCurrencyCode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/item"
-                    android:text="@string/editCurrencyCode"/>
-            </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/merchantEmail"
+            style="@style/item" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/editMerchantEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editMerchantEmail"
+            android:inputType="textEmailAddress"
+            style="@style/item"/>
 
-                <TextView
-                    android:id="@+id/merchantEmail"
-                    style="@style/item"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/merchantEmail" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/payerEmail"
+            style="@style/item"/>
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editMerchantEmail"
-                    android:text="@string/editMerchantEmail"
-                    style="@style/item"/>
-            </LinearLayout>
+        <EditText
+            android:id="@+id/editPayerEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editPayerEmail"
+            android:inputType="textEmailAddress"
+            style="@style/item"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/payerPhone"
+            style="@style/item"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/payerEmail"
-                    android:text="@string/payerEmail"/>
+        <EditText
+            android:id="@+id/editPayerPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/editPayerPhone"
+            android:inputType="phone"
+            style="@style/item"/>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editPayerEmail"
+        <Button
+            android:id="@+id/addItemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/addItemButton"
+            android:onClick="addItem"
+            android:background="@color/black"
+            android:textColor="@color/white"/>
 
-                    android:text="@string/editPayerEmail"/>
-            </LinearLayout>
-        
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/payerPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/payerPhone"
-                    style="@style/item"/>
-
-                <EditText
-                    android:id="@+id/editPayerPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/editPayerPhone"
-
-                    style="@style/item"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/itemsAdded"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/itemsAdded"
-                    style="@style/item"/>
-
-                <TextView
-                    android:id="@+id/itemCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/itemCount"
-                    style="@style/item"/>
-
-                <Button
-                    android:id="@+id/addItemButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/addItemButton"
-                    android:onClick="addItem"
-                    style="@style/item"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/payment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dip"
-                    android:layout_gravity="center"
-                    android:text="@string/launchPayPalHere"
-                    android:onClick="launchPayPalHere"/>
-            </LinearLayout>
-
+        <Button
+            android:id="@+id/payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/launchPayPalHere"
+            android:onClick="launchPayPalHere"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
+
 
 </ScrollView>
