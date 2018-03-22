@@ -17,7 +17,8 @@ import io.fabric.sdk.android.Fabric;
 
 public class AddItem extends Activity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = AddItem.class.getSimpleName();
+    private static final int requestCode = 100;
 
     private EditText _name;
     private EditText _desc;
@@ -49,6 +50,7 @@ public class AddItem extends Activity {
             Intent intent = this.getIntent();
             intent.putExtra(Item.class.getSimpleName(), Item.Converter.toBundle(_item));
             this.setResult(RESULT_OK, intent);
+            Log.d(LOG_TAG, _name.getText().toString());
             finish();
         } else {
             Toast toast = Toast.makeText(this, "Required field missing!", Toast.LENGTH_SHORT);

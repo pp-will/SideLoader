@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -27,7 +28,7 @@ import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 //called when activity is created
 public class PayPalHereLauncher extends Activity {
 
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final String LOG_TAG = PayPalHereLauncher.class.getSimpleName();
     public static final String MARKET_URL = "market://details?id=com.paypal.here";
     private static final String PPH_URL_STRING = "paypalhere://takePayment/v2?accepted={0}&returnUrl={1}&invoice={2}&step=choosePayment&payerPhone={3}";
     private static final String RETURN_URL = "pphsample://handleResponse/?Type={Type}&InvoiceId={InvoiceId}&Tip={Tip}&Email={Email}&TxId={TxId}&GrandTotal={GrandTotal}";
@@ -113,9 +114,17 @@ public class PayPalHereLauncher extends Activity {
         if(requestCode == ADD_ITEM_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Bundle bundle = data.getBundleExtra(Item.class.getSimpleName());
             Item item = Item.Converter.fromBundle(bundle);
-            _invoice.addItem(item);
+            if(_invoice != null) {
+                _invoice.addItem(item);
+            } else {
+                Toast toast = Toast.makeText(this, "Invoice is empty!", Toast.LENGTH_SHORT);
+                toast.show();
+                Toast toast2 = Toast.makeText(this, "starting initializedDefaultDataList()", Toast.LENGTH_SHORT);
+                toast2.show();
 
-            _itemCount.setText(String.valueOf(_invoice.getItemsCount()));
+                initializeDefaultDataList();
+            }
+            _itemCount.setText(String.valueOf(_invoice));//add .getItemsCount()
         }
     }
 
